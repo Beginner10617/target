@@ -10,7 +10,7 @@ public class Spawn : MonoBehaviour
     public float difficultyIncreaseInterval = 10f; // Time interval to increase difficulty
     public float objectSpeed = 5f; // Speed of the spawned objects
 
-    private float currentSpawnInterval; // Current spawn interval
+    public float currentSpawnInterval; // Current spawn interval
     private float timeSinceLastSpawn;   // Time since the last object was spawned
     private float difficultyTimer;      // Timer to track difficulty increments
 

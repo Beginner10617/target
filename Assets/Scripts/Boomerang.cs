@@ -15,11 +15,16 @@ public class Boomerang : MonoBehaviour
     public TextMeshProUGUI scoreText;
     int score  = 0;
     double theta;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource collectSource;
+    [SerializeField] AudioClip boom;
+    [SerializeField] AudioClip collect;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Respawn"))
         {
             score++;
+            collectSource.PlayOneShot(collect);
             Destroy(other.gameObject);
         }
     }
@@ -36,6 +41,7 @@ public class Boomerang : MonoBehaviour
         {
             transform.position = origin;
             transform.rotation = Quaternion.identity;
+            audioSource.Stop();
            // Debug.Log(mousePosition);
            Vector3 direction = mousePosition - origin;
             theta = Mathf.Atan2(direction.x,direction.y);
@@ -46,6 +52,7 @@ public class Boomerang : MonoBehaviour
             {
                 angle =  Mathf.Rad2Deg * (float) theta;
                 isMoving=true;
+                audioSource.PlayOneShot(boom);
                 return;
             }
         }
